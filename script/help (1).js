@@ -91,7 +91,7 @@ module.exports.handleEvent = async function({
     messageID,
     body
   } = event;
-  const message = prefix ? '☁️𝗣𝗥𝗘𝗙𝗜𝗫^- ⩊ -マ₎𐒡☁️\n━━━━━━━━━\n➤𝙲𝙼𝙳𝚂: ' + prefix : "𝙎𝙊𝙍𝙍𝙔........(ᵕ—ᴗ—) ♡\n━━━━━━━━━━━\nI don't have 𝚊 𝗣𝗥𝗘𝗙𝗜𝗫";
+  const message = prefix ? '☁️𝗣𝗥𝗘𝗙𝗜𝗫^- ⩊ -マ₎𐒡☁️\n━━━━━━━━━\n➤𝙲𝙼𝙳𝚂: ' + prefix : "𝙎𝙊𝙍𝙍𝙔........(ᵕ—ᴗ—) ♡\n━━━━━━━━━━━\nI don't have 𝚊 𝗣𝗥𝗘𝗙𝗜𝗫" + '[🔵ᗩƐᔕƬHƐᖇ-ᗷOƬ🔵]\n━━━━━━━━━━━\nhttps://www.facebook.com/thegodess.aesther';
   if (body?.toLowerCase().startsWith('prefix')) {
     api.sendMessage(message, threadID, messageID);
   }
