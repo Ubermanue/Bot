@@ -77,7 +77,7 @@ const apiEndpoint = "https://aryanapiz.onrender.com";
 
 module.exports = {
   config: {
-    name: "ai",
+    name: "ae",
     aliases: [],
     version: "1.3",
     author: "ArYAN",
