@@ -6,7 +6,7 @@ module.exports.config = {
   aliases: ['info'],
   description: "Beginner's guide",
   usage: "Help [page] or [command]",
-  credits: 'Develeoper',
+  credits: 'aesther',
 };
 module.exports.run = async function({
   api,
@@ -21,7 +21,7 @@ module.exports.run = async function({
     const eventCommands = enableCommands[1].handleEvent;
     const commands = enableCommands[0].commands;
     if (!input) {
-      const pages = 20;
+      const pages = 30;
       let page = 1;
       let start = (page - 1) * pages;
       let end = start + pages;
@@ -33,7 +33,7 @@ module.exports.run = async function({
       eventCommands.forEach((eventCommand, index) => {
         helpMessage += `✦ \t${index + 1}▪﹝${prefix}${eventCommand}﹞\n`;
       });
-      helpMessage += `\n\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝗔𝗡𝗝𝗔/𝗧𝗛𝗘𝗔🏅\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://www.facebook.com/thegodess.aesther\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :\n🔵 https://theaesther.onrender.com/\n🔵 https://anjaaesther.onrender.com/`;
+      helpMessage += `\n\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝗔𝗡𝗝𝗔/𝗧𝗛𝗘𝗔🏅\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://www.facebook.com/thegodess.aesther\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :\n🔵 https://autobot-aesther-leja.onrender.com/\n🔵 https://anjaaesther.onrender.com/`;
       api.sendMessage(helpMessage, event.threadID, event.messageID);
     } else if (!isNaN(input)) {
       const page = parseInt(input);
@@ -48,7 +48,7 @@ module.exports.run = async function({
       eventCommands.forEach((eventCommand, index) => {
         helpMessage += `✦ \t${index + 1}▪﹝${prefix}${eventCommand}﹞\n`;
       });
-      helpMessage += `\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝗔𝗡𝗝𝗔/𝗧𝗛𝗘𝗔🏅\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://theaesther.onrender.com/\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :https://anjaaesther.onrender.com/`;
+      helpMessage += `\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝗔𝗡𝗝𝗔/𝗧𝗛𝗘𝗔🏅\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://autobot-aesther-leja.onrender.com//\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :https://anjaaesther.onrender.com/`;
       api.sendMessage(helpMessage, event.threadID, event.messageID);
     } else {
       const command = [...Utils.handleEvent, ...Utils.commands].find(([key]) => key.includes(input?.toLowerCase()))?.[1];
