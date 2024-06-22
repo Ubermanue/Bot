@@ -25,24 +25,24 @@ module.exports.run = async function({ api, event, args }) {
     const input = args.join(' ');
     
     if (!input) {
-        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪ `, event.threadID, event.messageID);
+        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\nฅ^•ﻌ•^ฅ.  ?? .', event.threadID, event.messageID);
         return;
     }
     
     try {
-        const { data } = await axios.get(`https://soyeon-api.onrender.com/api`, {
-            params: { prompt: input }
-        });
+        const { data } = await axios.get(`https://ai-1stclass-nemory-project.vercel.app/api/llama?ask=${encodeURIComponent(input)}`);
         
         let response = data.response;
         
         // Replace characters with stylized characters from fonts
-        response = response.split('').map(char => fonts[char] || char).join('');
+        response = response.split('').map(char => {
+            return fonts[char] || char; // Using || operator for default fallback
+        }).join('');
         
-        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\n' + response + ' 🟡', event.threadID, event.messageID);
+        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪\n${response} 🟡`, event.threadID, event.messageID);
         
     } catch (error) {
-        console.error('Error:', error.message); // Log the error message for debugging
-        api.sendMessage('⚠️ Error: Failed to generate response.', event.threadID, event.messageID);
+        console.error('Error:', error);
+        api.sendMessage('⚠️ Error Loading ⚠️', event.threadID, event.messageID);
     }
 };
