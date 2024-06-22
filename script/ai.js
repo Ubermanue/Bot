@@ -31,26 +31,18 @@ module.exports.run = async function({ api, event, args }) {
     
     try {
         const { data } = await axios.get(`https://soyeon-api.onrender.com/api`, {
-            params: {
-                prompt: input
-            }
+            params: { prompt: input }
         });
         
         let response = data.response;
         
         // Replace characters with stylized characters from fonts
-        response = response.split('').map(char => {
-            if (fonts[char]) {
-                return fonts[char];
-            } else {
-                return char;
-            }
-        }).join('');
+        response = response.split('').map(char => fonts[char] || char).join('');
         
         api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\n' + response + ' 🟡', event.threadID, event.messageID);
         
     } catch (error) {
-        console.error('Error:', error);
-        api.sendMessage('⚠️ Error Loading ⚠️', event.threadID, event.messageID);
+        console.error('Error:', error.message); // Log the error message for debugging
+        api.sendMessage('⚠️ Error: Failed to generate response.', event.threadID, event.messageID);
     }
 };
