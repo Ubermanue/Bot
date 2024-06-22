@@ -14,7 +14,7 @@ module.exports.config = {
     version: '2',
     role: 0,
     hasPrefix: false,
-    aliases: ['gpt', 'ae'],
+    aliases: ['xc', 'ae'],
     description: "Command for AI-generated responses styled with special fonts.",
     usage: "ex : ai [prompt]",
     credits: 'aesther',
@@ -25,7 +25,7 @@ module.exports.run = async function({ api, event, args }) {
     const input = args.join(' ');
     
     if (!input) {
-        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\nฅ^•ﻌ•^ฅ.  ?? .', event.threadID, event.messageID);
+        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\n\nฅ^•ﻌ•^ฅ.  ?? .', event.threadID, event.messageID);
         return;
     }
     
@@ -39,7 +39,7 @@ module.exports.run = async function({ api, event, args }) {
             return fonts[char] || char; // Using || operator for default fallback
         }).join('');
         
-        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪\n${response} 🟡`, event.threadID, event.messageID);
+        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪\n\n${response} 🟡`, event.threadID, event.messageID);
         
     } catch (error) {
         console.error('Error:', error);
