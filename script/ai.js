@@ -25,7 +25,7 @@ module.exports.run = async function({ api, event, args }) {
     const input = args.join(' ');
     
     if (!input) {
-        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\nฅ^•ﻌ•^ฅ.  ?? .', event.threadID, event.messageID);
+        api.sendMessage('🟢 ᗩEᔕTᕼEᖇ ⚪\n\nฅ^•ﻌ•^ฅ.  ?? .', event.threadID, event.messageID);
 api.setMessageReaction("🟡", event.messageID, () => {}, true);
         return;
     }
@@ -40,7 +40,7 @@ api.setMessageReaction("🟡", event.messageID, () => {}, true);
             return fonts[char] || char; // Using || operator for default fallback
         }).join('');
         
-        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪\n${response} 🟡`, event.threadID, event.messageID);
+        api.sendMessage(`🟢 ᗩEᔕTᕼEᖇ ⚪\n\n${response} 🟡`, event.threadID, event.messageID);
 api.setMessageReaction("🟢", event.messageID, () => {}, true);
         
     } catch (error) {
