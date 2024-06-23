@@ -1,5 +1,5 @@
 module.exports.config = {
-	name: "Vix",
+	name: "besh",
 	version: "1.0.0",
 	role: 0,
 	credits: "hexa",
