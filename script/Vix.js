@@ -1,5 +1,5 @@
 module.exports.config = {
-	name: "besh",
+	name: "Vix",
 	version: "1.0.0",
 	role: 0,
 	credits: "hexa",
@@ -26,12 +26,12 @@ module.exports.run = async function ({ api, event, args }) {
 
 		if (input.length < 2) {
 				const responses = [
-						"uy bes bakit miss munanaman ako? 😏",
-						"nandito lang ako para sa'yo, bes. 😊",
-						"may kailangan ka ba, bes? 😁",
-						"kumusta araw mo, bes? 😄",
-						"miss mo ba ako, bes? 😅",
-						"bakit bes liligawan mona ako? 😨"
+						"ginigil mo ako e",
+						"Wat the pack you need?",
+						"Dede ka?",
+						"bat love?",
+						"miss mo nanaman ako e",
+						"naknampucha sagabal ano ba kasi?"
 				];
 				const randomResponse = responses[Math.floor(Math.random() * responses.length)];
 				api.sendMessage(randomResponse, event.threadID, event.messageID);
