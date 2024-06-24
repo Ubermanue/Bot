@@ -1,10 +1,10 @@
 #𝗚𝗢𝗔𝗧 𝗕𝗢𝗧 𝗕𝗬 ﹝𝗡𝗧𝗞𝗛𝗔𝗡𝗚﹞
 # PROJECT CREATOR</h1>
-<img src="https://i.ibb.co/Fz8gXS9/image.jpg8" alt="banner">
+<img src="https://i.postimg.cc/XNwkysX3/received-1743997043073125.jpg" alt="banner">
 <h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> 
 
 # FB PROFILE PHOTO</h1>
-<img src="https://i.ibb.co/stQtR0M/image.jpg" alt="banner">
+<img src="https://i.postimg.cc/YCX73Nny/Screenshot-20240624-230645.png" alt="banner">
 <h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> 
  
   # ﹝ᐯI᙭ᐯYՏ﹞(𝘊𝘺𝘣𝘦𝘳OTᗴᑎ)  V39 - ABOUT PROJECT INFORMATION</h1>
