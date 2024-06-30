@@ -70,19 +70,19 @@ body {
 }
 
 .container {
-	   background: #000000;
+	   background: #fff7d1;
 		 border-radius: 10px;
 		 padding: 20px;
 		 margin-top: 20px;
 		 margin-bottom: 20px;
 }
  h1 {
-		 color: #FFFFFF;
+		 color: #444444;
 		 font-size: 24px;
 		 margin-bottom: 15px;
 }
  label {
-		 background-color: #FFFFFF;
+		 background-color: #444444;
 	   color: #343434;
 		 border-radius: 10px;
 		 font-weight: bold;
