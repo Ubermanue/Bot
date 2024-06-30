@@ -1,98 +1,93 @@
+const axios = require('axios');
+
 module.exports.config = {
-  name: 'help',
-  version: '1.0.0',
-  role: 0,
-  hasPrefix: true,
-  aliases: ['info'],
-  description: "Beginner's guide",
-  usage: "Help [page] or [command]",
-  credits: '𝙏𝙧𝙤𝙮',
+    name: 'help',
+    version: '1.0.0',
+    role: 0,
+    hasPrefix: false,
+    aliases: ['help'],
+    description: "Beginner's guide",
+    usage: "Help [page] or [command]",
+    credits: 'Developer',
 };
-module.exports.run = async function({
-  api,
-  event,
-  enableCommands,
-  args,
-  Utils,
-  prefix
-}) {
-  const input = args.join(' ');
-  try {
-    const eventCommands = enableCommands[1].handleEvent;
-    const commands = enableCommands[0].commands;
-    if (!input) {
-      const pages = 30;
-      let page = 1;
-      let start = (page - 1) * pages;
-      let end = start + pages;
-      let helpMessage = `[🇧🇷𝙝𝙚𝙧𝙚🇧🇷]\n  ˚₊‧꒰ა /ᐠ - ˕ -マ໒꒱ ‧₊˚ \n━━━━━━━━━━━\n`;
-      for (let i = start; i < Math.min(end, commands.length); i++) {
-        helpMessage += `✪ \t${i + 1}▪﹝${prefix}${commands[i]}﹞\n`;
-      }
-      helpMessage += '\n━ 𝗘𝗩𝗘𝗡𝗧.𝗟𝗜𝗦𝗧- ˕ -ྀマ[🏷️]\n━━━━━━━━━━━\n';
-      eventCommands.forEach((eventCommand, index) => {
-        helpMessage += `✦ \t${index + 1}▪﹝${prefix}${eventCommand}﹞\n`;
-      });
-      helpMessage += `\n\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝐕𝐢𝐱𝐯𝐮𝐬/𝐓𝐫𝐨𝐲/𝐀𝐞𝐬𝐭𝐡𝐞𝐫\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://www.facebook.com/vixvus\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :\n🔵 https://venus-autobot.onrender.com/\n🔵 https://venus-autobot.onrender.com/`;
-      api.sendMessage(helpMessage, event.threadID, event.messageID);
-    } else if (!isNaN(input)) {
-      const page = parseInt(input);
-      const pages = 20;
-      let start = (page - 1) * pages;
-      let end = start + pages;
-      let helpMessage = `▪〉𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝘀 - 𝗟𝗜𝗦𝗧(－－〆)[🔖]\n━━━━━━━━━━━\n`;
-      for (let i = start; i < Math.min(end, commands.length); i++) {
-        helpMessage += `✪ \t${i + 1}▪﹝${prefix}${commands[i]}﹞\n`;
-      }
-      helpMessage += '\n━ 𝗘𝗩𝗘𝗡𝗧.𝗟𝗜𝗦𝗧- ˕ -ྀマ[🏷️]\n━━━━━━━━━━━\n';
-      eventCommands.forEach((eventCommand, index) => {
-        helpMessage += `✦ \t${index + 1}▪﹝${prefix}${eventCommand}﹞\n`;
-      });
-      helpMessage += `\n▪[📚]𝗣𝗔𝗚𝗘 : [${page}/${Math.ceil(commands.length / pages)}] ฅ^.ᆺ.^ฅ\n━━━━━━━━━━━\n[🆔]𝗔𝗨𝗧𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 𝗕𝗬 : 𝙖𝙚𝙨𝙩𝙝𝙚𝙧/𝙏𝙧𝙤𝙮/𝙑𝙞𝙭𝙫𝙪𝙨\n[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕 :https://www.facebook.com/vixvus\n[⚙️]𝗟𝗜𝗡𝗞 𝗔𝗨𝗧𝗢𝗕𝗢𝗧 :https://venus-autobot.onrender.com/`;
-      api.sendMessage(helpMessage, event.threadID, event.messageID);
-    } else {
-      const command = [...Utils.handleEvent, ...Utils.commands].find(([key]) => key.includes(input?.toLowerCase()))?.[1];
-      if (command) {
-        const {
-          name,
-          version,
-          role,
-          aliases = [],
-          description,
-          usage,
-          credits,
-          cooldown,
-          hasPrefix
-        } = command;
-        const roleMessage = role !== undefined ? (role === 0 ? '➛ Permission: user' : (role === 1 ? '➛ Permission: admin' : (role === 2 ? '➛ Permission: thread Admin' : (role === 3 ? '➛ Permission: super Admin' : '')))) : '';
-        const aliasesMessage = aliases.length ? `➛ Aliases: ${aliases.join(', ')}\n` : '';
-        const descriptionMessage = description ? `Description: ${description}\n` : '';
-        const usageMessage = usage ? `➛ Usage: ${usage}\n` : '';
-        const creditsMessage = credits ? `➛ Credits: ${credits}\n` : '';
-        const versionMessage = version ? `➛ Version: ${version}\n` : '';
-        const cooldownMessage = cooldown ? `➛ Cooldown: ${cooldown} second(s)\n` : '';
-        const message = ` 「 Command 」\n\n➛ Name: ${name}\n${versionMessage}${roleMessage}\n${aliasesMessage}${descriptionMessage}${usageMessage}${creditsMessage}${cooldownMessage}`;
-        api.sendMessage(message, event.threadID, event.messageID);
-      } else {
-        api.sendMessage('Command not found.', event.threadID, event.messageID);
-      }
+
+module.exports.run = async function ({ api, event, enableCommands, args, Utils, prefix }) {
+    const input = args.join(' ');
+
+    try {
+        const eventCommands = enableCommands[1].handleEvent;
+        const commands = enableCommands[0].commands;
+
+        const fetchRandomBibleVerse = async () => {
+            try {
+                const response = await axios.get('https://deku-rest-api-gadz.onrender.com/bible');
+                return `📖 ${response.data.verse}\n- ${response.data.reference}`;
+            } catch (error) {
+                console.error('Error fetching Bible verse:', error);
+                return 'An error occurred while fetching the Bible verse.';
+            }
+        };
+
+        const randomBibleVerse = await fetchRandomBibleVerse();
+
+        if (!input) {
+            const pages = 999;
+            let page = 1;
+            let start = (page - 1) * pages;
+            let end = start + pages;
+            let helpMessage = `🔴🟢🟡\n\n====『 𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗟𝗜𝗦𝗧 』====\n▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱\n\n♡  ∩_∩\n（„• ֊ •„)♡\n╭─∪∪───────────⟡`;
+            for (let i = start; i < Math.min(end, commands.length); i++) {
+                helpMessage += `\n├ ✧『 ${i + 1} 』  ${prefix}${commands[i]}\n├──────────────⟡\t`;
+            }
+            helpMessage += '\n\n====『𝗙𝗘𝗔𝗧𝗨𝗥𝗘 𝗟𝗜𝗦𝗧』====\n▱▱▱▱▱▱▱▱▱▱▱▱▱\n\n';
+            eventCommands.forEach((eventCommand, index) => {
+                helpMessage += `╭─────────────────╮\n |\t『 ${index + 1}.』  ${prefix}${eventCommand}\n╰─────────────────╯ \n\n`;
+            });
+            helpMessage += `𝗣𝗮𝗴𝗲: 『${page}/${Math.ceil(commands.length / pages)}』\nTo view information about a specific command, type '${prefix}help command name.\n\n𝗥𝗔𝗡𝗗𝗢𝗠 𝗕𝗜𝗕𝗟𝗘 𝗩𝗘𝗥𝗦𝗘:\n${randomBibleVerse}`;
+            api.sendMessage(helpMessage, event.threadID, event.messageID);
+        } else if (!isNaN(input)) {
+            const page = parseInt(input);
+            const pages = 100;
+            let start = (page - 2) * pages;
+            let end = start + pages;
+            let helpMessage = `𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗟𝗜𝗦𝗧:\n\n`;
+            for (let i = start; i < Math.min(end, commands.length); i++) {
+                helpMessage += `\t${i + 1}. 『 ${prefix}${commands[i]} 』\n`;
+            }
+            helpMessage += '\n𝗘𝗩𝗘𝗡𝗧 𝗟𝗜𝗦𝗧:\n\n';
+            eventCommands.forEach((eventCommand, index) => {
+                helpMessage += `\t${index + 1}. 『 ${prefix}${eventCommand} 』\n`;
+            });
+            helpMessage += `\nPage ${page} of ${Math.ceil(commands.length / pages)}\n\n𝗥𝗔𝗡𝗗𝗢𝗠 𝗕𝗜𝗕𝗟𝗘 𝗩𝗘𝗥𝗦𝗘:\n${randomBibleVerse}`;
+            api.sendMessage(helpMessage, event.threadID, event.messageID);
+        } else {
+            const command = [...Utils.handleEvent, ...Utils.commands].find(([key]) => key.includes(input?.toLowerCase()))?.[1];
+            if (command) {
+                const {
+                    name,
+                    version,
+                    role,
+                    aliases = [],
+                    description,
+                    usage,
+                    credits,
+                    cooldown,
+                    hasPrefix
+                } = command;
+                const roleMessage = role !== undefined ? (role === 0 ? '➛ Permission: user' : (role === 1 ? '➛ Permission: admin' : (role === 2 ? '➛ Permission: thread Admin' : (role === 3 ? '➛ Permission: super Admin' : '')))) : '';
+                const aliasesMessage = aliases.length ? `➛ Aliases: ${aliases.join(', ')}\n` : '';
+                const descriptionMessage = description ? `Description: ${description}\n` : '';
+                const usageMessage = usage ? `➛ Usage: ${usage}\n` : '';
+                const creditsMessage = credits ? `➛ Credits: ${credits}\n` : '';
+                const versionMessage = version ? `➛ Version: ${version}\n` : '';
+                const cooldownMessage = cooldown ? `➛ Cooldown: ${cooldown} second(s)\n` : '';
+                const message = ` 「 Command 」\n\n➛ Name: ${name}\n${versionMessage}${roleMessage}\n${aliasesMessage}${descriptionMessage}${usageMessage}${creditsMessage}${cooldownMessage}`;
+                api.sendMessage(message, event.threadID, event.messageID);
+            } else {
+                api.sendMessage('Command not found.', event.threadID, event.messageID);
+            }
+        }
+    } catch (error) {
+        console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 };
-module.exports.handleEvent = async function({
-  api,
-  event,
-  prefix
-}) {
-  const {
-    threadID,
-    messageID,
-    body
-  } = event;
-  const message = prefix ? '🇧🇷𝗣𝗥𝗘𝗙𝗜𝗫🇧🇷^- ⩊ -マ₎𐒡☁️\n━━━━━━━━━\n➤𝙲𝙼𝙳𝚂: ' + prefix : "𝙎𝙊𝙍𝙍𝙔........(ᵕ—ᴗ—) ♡\n━━━━━━━━━━━\nI don't have 𝚊 𝗣𝗥𝗘𝗙𝗜𝗫" + '[🇧🇷ᗩƐᔕƬHƐᖇ-ᗷOƬ🇧🇷]\n━━━━━━━━━━━\nhttps://www.facebook.com/vixvus';
-  if (body?.toLowerCase().startsWith('prefix')) {
-    api.sendMessage(message, threadID, messageID);
-  }
-}
